@@ -8,7 +8,8 @@ const dislikedMovies = [];
 const onLoad = () => {
   window.addEventListener("load", async () => {
     try {
-      getMovies();
+      await getMovies();
+      getMovie();
     } catch (error) {
       console.log(error);
     }
@@ -50,26 +51,23 @@ const movieLiked = () => {
     console.log(likedMovies[i].title);
     console.log(movieObject.title);
 
-    while (a === false || i === likedMovies.length - 1) {
+    likedMovies.some((likedMovie) => likedMovie.title !== movieObject.title);
+
+    localStorage.setItem("likedMovies", JSON.stringify(likedMovies));
+    getMovie();
+  });
+};
+const movieDisliked = () => {};
+onLoad();
+movieLiked();
+
+/*     for (i; i < likedMovies.length; i++) {
+      if (likedMovies[i].title !== movieObject.title)
+    }
+    while (a === false && i === likedMovies.length - 1) {
       if (likedMovies[i].title !== movieObject.title) {
         a = true;
         likedMovies.push(movieObject);
       }
       i++;
-    }
-    console.log(likedMovies);
-    /*  for (likedMovie of likedMovies) {
-      if (likedMovie.title !== movieObject.title) {
-        likedMovies.push(movieObject);
-      } else {
-        console.log("already in");
-        console.log(likedMovies);
-      }
     } */
-    getMovie();
-  });
-};
-const movieDisliked = () => {};
-movieLiked();
-getMovie();
-//onLoad();
