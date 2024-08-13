@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SceneIt</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sharedStyles.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -19,10 +20,14 @@
     </header>
     <main>
       <div class="card-container">
-        <img src="./assets/notebook poster.jpg" alt="movie-poster" />
+        <img
+          class="movies-poster"
+          src="https://m.media-amazon.com/images/M/MV5BMTI1NDM3NTE2M15BMl5BanBnXkFtZTcwMjA1MTc3MQ@@._V1_SX300.jpg"
+          alt="movie-poster"
+        />
         <section>
           <article class="information-side big">
-            <h1>Titel</h1>
+            <h1 id="title">Titel</h1>
             <h3>Sammafattning</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
