@@ -2,7 +2,6 @@ const moviePoster = document.querySelector(".movies-poster");
 const movieTitle = document.querySelector("#title");
 const heart = document.querySelector("#heart");
 const cross = document.querySelector("#cross");
-const likedMovies = [];
 const dislikedMovies = [];
 
 const onLoad = () => {
@@ -37,21 +36,26 @@ const getMovie = () => {
 };
 
 const movieLiked = () => {
+  let likedMovies = JSON.parse(localStorage.getItem("likedMovies"));
   heart.addEventListener("click", () => {
+    if (!likedMovies) {
+      likedMovies = [];
+    }
+    console.log(likedMovies);
     const movieObject = {
       title: movieTitle.innerText,
       poster: moviePoster.src,
     };
-    if (likedMovies.length >= 0) {
-      likedMovies.push(movieObject);
-    }
-    console.log(movieObject);
-    let i = 0;
-    let a = false;
-    console.log(likedMovies[i].title);
-    console.log(movieObject.title);
 
-    likedMovies.some((likedMovie) => likedMovie.title !== movieObject.title);
+    const exists = likedMovies.some(
+      (likedMovie) => likedMovie.title === movieObject.title
+    );
+
+    if (!exists) {
+      likedMovies.push(movieObject);
+    } else {
+      console.log("säg hej!");
+    }
 
     localStorage.setItem("likedMovies", JSON.stringify(likedMovies));
     getMovie();
