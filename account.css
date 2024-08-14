@@ -1,0 +1,40 @@
+main {
+  flex: 1;
+  background-color: grey;
+  padding: 3rem;
+  h1 {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    padding-bottom: 2rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    span {
+      display: flex;
+      align-items: baseline;
+      h2 {
+        font-size: 2.5rem;
+        color: white;
+        padding: 0 1rem 1rem 0;
+      }
+      figure {
+        padding-right: 0.3rem;
+      }
+      p {
+        color: white;
+      }
+    }
+    label {
+      font-size: 1.2rem;
+      color: white;
+      padding-bottom: 0.2rem;
+    }
+    input {
+      width: 20rem;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+  }
+}
