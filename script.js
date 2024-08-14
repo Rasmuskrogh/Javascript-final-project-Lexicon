@@ -2,7 +2,6 @@ const moviePoster = document.querySelector(".movies-poster");
 const movieTitle = document.querySelector("#title");
 const heart = document.querySelector("#heart");
 const cross = document.querySelector("#cross");
-const dislikedMovies = [];
 
 const onLoad = () => {
   window.addEventListener("load", async () => {
@@ -41,37 +40,45 @@ const movieLiked = () => {
     if (!likedMovies) {
       likedMovies = [];
     }
-    console.log(likedMovies);
     const movieObject = {
       title: movieTitle.innerText,
       poster: moviePoster.src,
     };
-
     const exists = likedMovies.some(
       (likedMovie) => likedMovie.title === movieObject.title
     );
-
     if (!exists) {
       likedMovies.push(movieObject);
     } else {
       console.log("säg hej!");
     }
-
     localStorage.setItem("likedMovies", JSON.stringify(likedMovies));
     getMovie();
   });
 };
-const movieDisliked = () => {};
+
+const movieDisliked = () => {
+  let dislikedMovies = JSON.parse(localStorage.getItem("dislikedMovies"));
+  cross.addEventListener("click", () => {
+    if (!dislikedMovies) {
+      dislikedMovies = [];
+    }
+    const movieObject = {
+      title: movieTitle.innerText,
+      poster: moviePoster.src,
+    };
+    const exists = dislikedMovies.some(
+      (dislikedMovie) => dislikedMovie.title === movieObject.title
+    );
+    if (!exists) {
+      dislikedMovies.push(movieObject);
+    } else {
+      console.log("hej men nej!");
+    }
+    localStorage.setItem("dislikedMovies", JSON.stringify(dislikedMovies));
+    getMovie();
+  });
+};
 onLoad();
 movieLiked();
-
-/*     for (i; i < likedMovies.length; i++) {
-      if (likedMovies[i].title !== movieObject.title)
-    }
-    while (a === false && i === likedMovies.length - 1) {
-      if (likedMovies[i].title !== movieObject.title) {
-        a = true;
-        likedMovies.push(movieObject);
-      }
-      i++;
-    } */
+movieDisliked();
