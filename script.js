@@ -7,7 +7,8 @@ const onLoad = () => {
   window.addEventListener("load", async () => {
     try {
       await getMovies();
-      getMovie();
+      await getMovie();
+      isMovieSaved();
     } catch (error) {
       console.log(error);
     }
@@ -78,6 +79,34 @@ const movieDisliked = () => {
     localStorage.setItem("dislikedMovies", JSON.stringify(dislikedMovies));
     getMovie();
   });
+};
+const isMovieSaved = () => {
+  console.log("enters?");
+  const movieObject = {
+    title: movieTitle.innerText,
+    poster: moviePoster.src,
+  };
+  let likedMovies = JSON.parse(localStorage.getItem("likedMovies"));
+  let dislikedMovies = JSON.parse(localStorage.getItem("dislikedMovies"));
+
+  if (likedMovies) {
+    console.log("laddarom");
+    const existsDisliked = dislikedMovies.some(
+      (dislikedMovie) => dislikedMovie.title === movieObject.title
+    );
+    if (existsDisliked) {
+      getMovie();
+    }
+  }
+
+  if (likedMovies) {
+    const existsLiked = likedMovies.some(
+      (likedMovie) => likedMovie.title === movieObject.title
+    );
+    if (existsLiked) {
+      getMovie();
+    }
+  }
 };
 onLoad();
 movieLiked();
