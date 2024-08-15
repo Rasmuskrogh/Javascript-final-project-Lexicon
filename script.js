@@ -6,6 +6,7 @@ const cross = document.querySelector("#cross");
 const onLoad = () => {
   window.addEventListener("load", async () => {
     try {
+      setAdmin();
       await getMovies();
       await getMovie();
       // isMovieSaved();
@@ -18,6 +19,8 @@ const onLoad = () => {
 const getMovies = async () => {
   try {
     const response = await fetch(
+      /* "https://rasmuskrogh.github.io/MovieAPI/movieAPI.json" */
+      /* "https://github.com/Rasmuskrogh/MovieAPI/blob/main/movieAPI.json" */
       "https://santosnr6.github.io//Data/movies_long.json"
     );
     const data = await response.json();
@@ -81,6 +84,22 @@ const movieDisliked = () => {
   });
 };
 
+const setAdmin = () => {
+  let getAdmin = JSON.parse(localStorage.getItem("admin"));
+  console.log(getAdmin);
+  if (!getAdmin) {
+    getAdmin = localStorage.setItem("admin", "false");
+  }
+  const admin = getAdmin === true ? true : false;
+  if (!admin) {
+    window.location.href = "login/login.html";
+  }
+};
+
+onLoad();
+movieLiked();
+movieDisliked();
+
 // const isMovieSaved = () => {
 //   console.log("enters?");
 //   const movieObject = {
@@ -109,6 +128,3 @@ const movieDisliked = () => {
 //     }
 //   }
 // };
-onLoad();
-movieLiked();
-movieDisliked();

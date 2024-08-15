@@ -1,3 +1,13 @@
+admin = JSON.parse(localStorage.getItem("admin"));
+
+const onLoad = () => {
+  window.addEventListener("load", () => {
+    if (!admin) {
+      window.location.href = "/login/login.html";
+    }
+  });
+};
+
 const generateList = () => {
   const likedMovies = JSON.parse(localStorage.getItem("likedMovies"));
   console.log(likedMovies);
@@ -20,4 +30,5 @@ const generateList = () => {
   }
 };
 
+onLoad();
 generateList();

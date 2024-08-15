@@ -14,7 +14,7 @@ main {
   }
   form {
     background-color: rgb(85, 85, 85);
-    padding: 2rem;
+    padding: 3rem 2rem 3rem 5rem;
     display: flex;
     flex-direction: column;
     border: 2px solid rgb(70, 70, 70);
