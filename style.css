@@ -1,4 +1,5 @@
 main {
+  margin: 6rem 0;
   background-color: grey;
   .card-container {
     display: flex;
