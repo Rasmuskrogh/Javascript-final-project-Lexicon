@@ -22,9 +22,14 @@ main {
         }
         p {
           padding-left: 1rem;
+          font-weight: 500;
+          font-size: 1.2rem;
         }
         .ratings {
           display: flex;
+          p {
+            font-weight: 600;
+          }
         }
       }
       .dislike-like-wrapper {

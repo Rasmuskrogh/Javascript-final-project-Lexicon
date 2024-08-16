@@ -54,6 +54,7 @@ const editingInfo = () => {
     email.value = activeUser.email;
     username.value = activeUser.username;
     password.value = activeUser.password;
+
     if (document.querySelector("#editAccount") === null) {
       const submitButton = document.createElement("button");
       submitButton.innerText = "Spara";
@@ -61,7 +62,6 @@ const editingInfo = () => {
       submitButton.id = "editAccount";
       //Resetting the info in local Storage for "loggedInUser" and "users"
       submitButton.addEventListener("click", (e) => {
-        e.preventDefault();
         const editedData = {
           fname: fname.value,
           lname: lname.value,

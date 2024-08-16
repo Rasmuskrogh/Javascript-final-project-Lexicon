@@ -28,6 +28,16 @@ main {
       img {
         height: 12rem;
       }
+      span {
+        display: flex;
+        align-items: center;
+        h3 {
+          padding-right: 5px;
+        }
+      }
+      #summary-span {
+        align-items: baseline;
+      }
     }
   }
   h4 {

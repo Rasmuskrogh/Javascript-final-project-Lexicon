@@ -23,13 +23,27 @@ const generateList = () => {
         <li>
         <img src=${movie.poster}>
         <div>
-        <h3> Titel: ${movie.title}</h3>
-        <h3> Genre: ${movie.genre}</h3>
-        <h3> Regissör: ${movie.director}</h3>
-        <h3> IMDB:  ${movie.imdb}</h3>
-        <h3> Rotten Tomatoes:  ${movie.rottenTomatoes}</h3>
-        <h3> Skådespelare:  ${movie.actors}</h3>
-        <h3>Beskrivning: ${movie.plot}</h3>
+        <span>
+        <h3> Titel:</h3><p>${movie.title}</p>
+        </span>
+        <span>
+        <h3> Genre: </h3><p>${movie.genre}</p>
+        </span>
+        <span>
+        <h3> Regissör: </h3><p>${movie.director}</p>
+        </span>
+        <span>
+        <h3> Skådespelare:  </h3><p>${movie.actors}</p>
+        </span>
+        <span>
+        <h3> IMDB:  </h3><p>${movie.imdb}</p>
+        </span>
+        <span>
+        <h3> Rotten Tomatoes:  </h3><p>${movie.rottenTomatoes}</p>
+        </span>
+        <span id="summary-span">
+        <h3>Beskrivning: </h3><p>${movie.plot}</p>
+        </span>
         </div>
         </li>
         `;

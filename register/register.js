@@ -6,12 +6,10 @@ const createAccount = () => {
     e.preventDefault();
     let users = JSON.parse(localStorage.getItem("users"));
 
-    if (users) {
-      console.log(users);
-    } else {
+    if (!users) {
       users = [];
     }
-    console.log(e.target.username.value);
+
     try {
       if (
         e.target.username.value.length < 3 ||

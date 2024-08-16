@@ -17,9 +17,7 @@ const onLoad = () => {
       await getMovies();
       await getMovie();
       // isMovieSaved();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   });
 };
 
@@ -32,11 +30,9 @@ const getMovies = async () => {
       /* "https://santosnr6.github.io//Data/movies_long.json" */
     );
     const data = await response.json();
-    console.log(data);
+
     localStorage.setItem("Movies", JSON.stringify(data));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 //Getting a random movie from localStorage and displaying poster and title on the page
@@ -49,7 +45,7 @@ const getMovie = () => {
   movieGenres.innerText = movies[randomMovieId].genre;
   movieDirector.innerText = movies[randomMovieId].directors;
   movieActors.innerText = movies[randomMovieId].actors;
-  movieIMDB.innerText = movies[randomMovieId].imdb_rating;
+  movieIMDB.innerText = movies[randomMovieId].imdb_rating + " / 10";
   movieRotten.innerText = movies[randomMovieId].rotten_tomatoes;
 };
 
@@ -76,7 +72,6 @@ const movieLiked = () => {
     if (!exists) {
       likedMovies.push(movieObject);
     } else {
-      console.log("säg hej!");
     }
     localStorage.setItem("likedMovies", JSON.stringify(likedMovies));
     getMovie();
@@ -100,7 +95,6 @@ const movieDisliked = () => {
     if (!exists) {
       dislikedMovies.push(movieObject);
     } else {
-      console.log("hej men nej!");
     }
     localStorage.setItem("dislikedMovies", JSON.stringify(dislikedMovies));
     getMovie();
@@ -110,7 +104,7 @@ const movieDisliked = () => {
 //Setting admin privileges if user is logged in
 const setAdmin = () => {
   let getAdmin = JSON.parse(localStorage.getItem("admin"));
-  console.log(getAdmin);
+
   if (!getAdmin) {
     getAdmin = localStorage.setItem("admin", "false");
   }
@@ -126,7 +120,7 @@ movieLiked();
 movieDisliked();
 
 // const isMovieSaved = () => {
-//   console.log("enters?");
+//
 //   const movieObject = {
 //     title: movieTitle.innerText,
 //     poster: moviePoster.src,
@@ -135,7 +129,7 @@ movieDisliked();
 //   let dislikedMovies = JSON.parse(localStorage.getItem("dislikedMovies"));
 
 //   if (likedMovies) {
-//     console.log("laddarom");
+//
 //     const existsDisliked = dislikedMovies.some(
 //       (dislikedMovie) => dislikedMovie.title === movieObject.title
 //     );
