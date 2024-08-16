@@ -5,6 +5,10 @@ const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const editButton = document.querySelector(".edit");
 const accountForm = document.querySelector(".account-form");
+const logoutButton = document.querySelector("#logout-button");
+const admin = JSON.parse(localStorage.getItem("admin"));
+const activeUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const users = JSON.parse(localStorage.getItem("users"));
 
 const onLoad = () => {
   window.addEventListener("load", () => {
@@ -16,8 +20,6 @@ const onLoad = () => {
 };
 
 onLoad();
-const admin = JSON.parse(localStorage.getItem("admin"));
-const activeUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
 const settingInfo = () => {
   fname.placeholder = activeUser.fname;
@@ -39,11 +41,14 @@ const editingInfo = () => {
       accountForm.insertAdjacentElement("beforeend", submitButton);
       submitButton.id = "editAccount";
     }
+    logoutButton.remove();
     fname.disabled = false;
     lname.disabled = false;
     email.disabled = false;
     username.disabled = false;
     password.disabled = false;
+
+    const key = activeUser.username;
 
     fname.value = activeUser.fname;
     lname.value = activeUser.lname;
@@ -51,8 +56,10 @@ const editingInfo = () => {
     username.value = activeUser.username;
     password.value = activeUser.password;
 
+    console.log(key);
+
     submitButton.addEventListener("click", () => {
-      editedData = {
+      const editedData = {
         fname: fname.value,
         lname: lname.value,
         email: email.value,
@@ -61,8 +68,24 @@ const editingInfo = () => {
       };
       localStorage.setItem("loggedInUser", JSON.stringify(editedData));
 
+      const index = users.findIndex((user) => user.username === key);
+      if (index !== -1) {
+        users[index] = editedData;
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+
+      console.log(loggedinUser);
+
       console.log(editedData);
     });
+  });
+};
+
+const logout = () => {
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem("loggedInUser");
+    localStorage.setItem("admin", "false");
+    window.location.href = "/login/login.html";
   });
 };
 

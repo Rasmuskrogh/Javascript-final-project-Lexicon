@@ -42,10 +42,24 @@ main {
       color: black;
       font-size: 1rem;
     }
-    button {
+    #editAccount {
       margin-top: 1rem;
       width: 20rem;
       padding: 0.5rem;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+    }
+    #logout-button {
+      color: #ececec;
+      background-color: rgb(160, 0, 0);
+      font-size: 1.2rem;
+      width: 7rem;
+      padding: 0.3rem;
+      border-radius: 10px;
+      font-weight: bold;
+      border: none;
     }
   }
 }

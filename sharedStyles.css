@@ -23,6 +23,7 @@ header {
     gap: 0.5rem;
   }
   .filter-section {
+    display: none;
     padding-right: 2rem;
     a {
       img {
