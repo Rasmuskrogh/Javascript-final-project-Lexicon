@@ -1,10 +1,9 @@
 const regform = document.querySelector("#regform");
 
-//Create a user withvalidation
+//Create a user with validation
 const createAccount = () => {
   regform.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("hej");
     let users = JSON.parse(localStorage.getItem("users"));
 
     if (users) {
@@ -19,7 +18,7 @@ const createAccount = () => {
         e.target.username.value.length > 15
       ) {
         throw new Error(
-          "Ditt användarnamn måste vara minst tre tecken långt och max 15 tecken långt"
+          "Ditt användarnamn måste vara minst 3 tecken långt och max 15 tecken långt"
         );
       } else if (e.target.password.value !== e.target.repeat.value) {
         throw new Error(
@@ -33,7 +32,7 @@ const createAccount = () => {
         );
       } else if (e.target.password.value < 6) {
         throw new Error(
-          "You password is to short. It has tobe at least 6 characters long"
+          "You password is to short. It has to be at least 6 characters long"
         );
       } else {
         const registrationData = {
@@ -48,7 +47,13 @@ const createAccount = () => {
         window.location.href = "/login/login.html";
       }
     } catch (error) {
-      console.log(error);
+      if (document.querySelector("#errorMsg") !== null) {
+        document.querySelector("#errorMsg").remove();
+      }
+      let errorMessage = document.createElement("h4");
+      errorMessage.id = "errorMsg";
+      errorMessage.innerText = error;
+      regform.insertAdjacentElement("afterbegin", errorMessage);
     }
   });
 };

@@ -38,7 +38,13 @@ const loginAccount = () => {
         throw new Error("Username and/or password don't match");
       }
     } catch (error) {
-      console.log(error);
+      if (document.querySelector("#errorMsg") !== null) {
+        document.querySelector("#errorMsg").remove();
+      }
+      let errorMessage = document.createElement("h4");
+      errorMessage.id = "errorMsg";
+      errorMessage.innerText = error;
+      loginform.insertAdjacentElement("afterbegin", errorMessage);
     }
   });
 };
