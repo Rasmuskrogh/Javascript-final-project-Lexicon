@@ -23,6 +23,9 @@ main {
         p {
           padding-left: 1rem;
         }
+        .ratings {
+          display: flex;
+        }
       }
       .dislike-like-wrapper {
         display: flex;
