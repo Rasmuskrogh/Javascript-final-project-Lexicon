@@ -1,4 +1,6 @@
 const regform = document.querySelector("#regform");
+
+//Create a user withvalidation
 const createAccount = () => {
   regform.addEventListener("submit", (e) => {
     e.preventDefault();

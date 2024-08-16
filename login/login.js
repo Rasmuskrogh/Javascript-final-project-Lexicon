@@ -1,6 +1,7 @@
 const loginform = document.querySelector("#loginform");
 let users = JSON.parse(localStorage.getItem("users"));
 
+//login a user with validation
 const loginAccount = () => {
   loginform.addEventListener("submit", (e) => {
     e.preventDefault();

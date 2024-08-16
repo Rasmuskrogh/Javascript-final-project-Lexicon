@@ -10,6 +10,7 @@ const admin = JSON.parse(localStorage.getItem("admin"));
 const activeUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const users = JSON.parse(localStorage.getItem("users"));
 
+//Making use the user has admin rights. If not sends the user to the login page.
 const onLoad = () => {
   window.addEventListener("load", () => {
     console.log(admin);
@@ -21,6 +22,7 @@ const onLoad = () => {
 
 onLoad();
 
+//Filling the account fields with info from localStorage
 const settingInfo = () => {
   fname.placeholder = activeUser.fname;
   lname.placeholder = activeUser.lname;
@@ -32,8 +34,11 @@ const settingInfo = () => {
   }
 };
 
+//Editing info from the account fields and setting them in local storage
 const editingInfo = () => {
   console.log(activeUser.password);
+
+  //Creating the submit button
   editButton.addEventListener("click", () => {
     if (document.querySelector("#editAccount") === null) {
       const submitButton = document.createElement("button");
@@ -41,7 +46,11 @@ const editingInfo = () => {
       accountForm.insertAdjacentElement("beforeend", submitButton);
       submitButton.id = "editAccount";
     }
+
+    //remving the logout button
     logoutButton.remove();
+
+    //Enableing the input fields
     fname.disabled = false;
     lname.disabled = false;
     email.disabled = false;
@@ -50,6 +59,7 @@ const editingInfo = () => {
 
     const key = activeUser.username;
 
+    //Setting the values from local storage in the input fields
     fname.value = activeUser.fname;
     lname.value = activeUser.lname;
     email.value = activeUser.email;
@@ -58,6 +68,7 @@ const editingInfo = () => {
 
     console.log(key);
 
+    //Resetting the info in local Storage for "loggedInUser" and "users"
     submitButton.addEventListener("click", () => {
       const editedData = {
         fname: fname.value,
@@ -81,6 +92,7 @@ const editingInfo = () => {
   });
 };
 
+//Logging out the user by removing the loggedInUser value, setting admin to false and moving th euser back to the login page
 const logout = () => {
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("loggedInUser");

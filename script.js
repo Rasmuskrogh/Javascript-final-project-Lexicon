@@ -3,6 +3,7 @@ const movieTitle = document.querySelector("#title");
 const heart = document.querySelector("#heart");
 const cross = document.querySelector("#cross");
 
+//Setting admin privileges, getting movies from the API and setting a movie on the page.
 const onLoad = () => {
   window.addEventListener("load", async () => {
     try {
@@ -16,6 +17,7 @@ const onLoad = () => {
   });
 };
 
+//Getting movies from the API and setting them in local Storage
 const getMovies = async () => {
   try {
     const response = await fetch(
@@ -31,6 +33,7 @@ const getMovies = async () => {
   }
 };
 
+//Getting a random movie from localStorage and displaying poster and title on the page
 const getMovie = () => {
   const movies = JSON.parse(localStorage.getItem("Movies"));
   const randomMovieId = Math.floor(Math.random() * movies.length - 1);
@@ -38,6 +41,7 @@ const getMovie = () => {
   movieTitle.innerText = movies[randomMovieId].title;
 };
 
+//Putting the current movie into the "likedMovies" and putting it i local storage and then updating the displayed movie
 const movieLiked = () => {
   let likedMovies = JSON.parse(localStorage.getItem("likedMovies"));
   heart.addEventListener("click", () => {
@@ -61,6 +65,7 @@ const movieLiked = () => {
   });
 };
 
+//Putting the current movie into the "dislikedMovies" and putting it i local storage and then updating the displayed movie
 const movieDisliked = () => {
   let dislikedMovies = JSON.parse(localStorage.getItem("dislikedMovies"));
   cross.addEventListener("click", () => {
@@ -84,6 +89,7 @@ const movieDisliked = () => {
   });
 };
 
+//Setting admin privileges if user is logged in
 const setAdmin = () => {
   let getAdmin = JSON.parse(localStorage.getItem("admin"));
   console.log(getAdmin);
@@ -96,6 +102,7 @@ const setAdmin = () => {
   }
 };
 
+//Executing the functions
 onLoad();
 movieLiked();
 movieDisliked();

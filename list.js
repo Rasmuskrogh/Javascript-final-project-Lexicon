@@ -1,5 +1,5 @@
 admin = JSON.parse(localStorage.getItem("admin"));
-
+//Sending the user back to the login page if admin = false
 const onLoad = () => {
   window.addEventListener("load", () => {
     if (!admin) {
@@ -8,6 +8,7 @@ const onLoad = () => {
   });
 };
 
+//Adding a list from local Storage of liked movies
 const generateList = () => {
   const likedMovies = JSON.parse(localStorage.getItem("likedMovies"));
   console.log(likedMovies);
