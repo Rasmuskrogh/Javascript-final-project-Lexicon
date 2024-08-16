@@ -13,7 +13,6 @@ const users = JSON.parse(localStorage.getItem("users"));
 //Making use the user has admin rights. If not sends the user to the login page.
 const onLoad = () => {
   window.addEventListener("load", () => {
-    console.log(admin);
     if (!admin) {
       window.location.href = "/login/login.html";
     }
@@ -28,7 +27,6 @@ const settingInfo = () => {
   lname.placeholder = activeUser.lname;
   email.placeholder = activeUser.email;
   username.placeholder = activeUser.username;
-  console.log(activeUser.password.length);
   for (let i = 0; i < activeUser.password.length; i++) {
     password.placeholder = password.placeholder + "*";
   }
@@ -36,18 +34,9 @@ const settingInfo = () => {
 
 //Editing info from the account fields and setting them in local storage
 const editingInfo = () => {
-  console.log(activeUser.password);
-
   //Creating the submit button
   editButton.addEventListener("click", () => {
-    if (document.querySelector("#editAccount") === null) {
-      const submitButton = document.createElement("button");
-      submitButton.innerText = "Spara";
-      accountForm.insertAdjacentElement("beforeend", submitButton);
-      submitButton.id = "editAccount";
-    }
-
-    //remving the logout button
+    //removing the logout button
     logoutButton.remove();
 
     //Enableing the input fields
@@ -65,30 +54,30 @@ const editingInfo = () => {
     email.value = activeUser.email;
     username.value = activeUser.username;
     password.value = activeUser.password;
+    if (document.querySelector("#editAccount") === null) {
+      const submitButton = document.createElement("button");
+      submitButton.innerText = "Spara";
+      accountForm.insertAdjacentElement("beforeend", submitButton);
+      submitButton.id = "editAccount";
+      //Resetting the info in local Storage for "loggedInUser" and "users"
+      submitButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const editedData = {
+          fname: fname.value,
+          lname: lname.value,
+          email: email.value,
+          username: username.value,
+          password: password.value,
+        };
+        localStorage.setItem("loggedInUser", JSON.stringify(editedData));
 
-    console.log(key);
-
-    //Resetting the info in local Storage for "loggedInUser" and "users"
-    submitButton.addEventListener("click", () => {
-      const editedData = {
-        fname: fname.value,
-        lname: lname.value,
-        email: email.value,
-        username: username.value,
-        password: password.value,
-      };
-      localStorage.setItem("loggedInUser", JSON.stringify(editedData));
-
-      const index = users.findIndex((user) => user.username === key);
-      if (index !== -1) {
-        users[index] = editedData;
-        localStorage.setItem("users", JSON.stringify(users));
-      }
-
-      console.log(loggedinUser);
-
-      console.log(editedData);
-    });
+        const index = users.findIndex((user) => user.username === key);
+        if (index !== -1) {
+          users[index] = editedData;
+          localStorage.setItem("users", JSON.stringify(users));
+        }
+      });
+    }
   });
 };
 
@@ -103,3 +92,4 @@ const logout = () => {
 
 settingInfo();
 editingInfo();
+logout();
