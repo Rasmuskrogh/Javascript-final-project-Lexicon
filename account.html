@@ -20,23 +20,22 @@
       </section>
     </header>
     <main>
-      <h1>Konto</h1>
-      <form action="">
+      <form class="account-form">
         <span>
           <h2>Kontoinformation</h2>
-          <figure><img src="assets/edit.svg" alt="" /></figure>
+          <figure class="edit"><img src="assets/edit.svg" alt="" /></figure>
           <p>edit</p>
         </span>
-        <label for="">Förnamn</label>
-        <input type="text" />
-        <label for="">Efternamn</label>
-        <input type="text" />
-        <label for="">E-post</label>
-        <input type="email" />
-        <label for="">Användarnamn</label>
-        <input type="text" />
-        <label for="">Lösenord</label>
-        <input type="password" />
+        <label for="fname">Förnamn</label>
+        <input type="text" id="fname" disabled />
+        <label for="lname">Efternamn</label>
+        <input type="text" id="lname" disabled />
+        <label for="email">E-post</label>
+        <input type="email" id="email" disabled />
+        <label for="username">Användarnamn</label>
+        <input type="text" id="username" disabled />
+        <label for="password">Lösenord</label>
+        <input type="password" id="password" disabled />
       </form>
     </main>
     <footer>
